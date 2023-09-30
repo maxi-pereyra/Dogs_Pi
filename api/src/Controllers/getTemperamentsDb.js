@@ -13,26 +13,29 @@ const getTemperamentsDb = async () => {
         let temperament = [];
         
         const temperaments = dogData.map((el) =>
-            el.temperament ? el.temperament.split(",") : ["Desconocida"]
+        el.temperament ? el.temperament.split(",") : ["Desconocida"]
         );
-
-        for (let i = 0; i < temperaments.length; i++) {
-            for (let j = 0; j < temperaments[i].length; j++) {
-              temperament.push(temperaments[i][j].trim());
-            }
-        }
-
-        for (let i = 0; i < temperament.length; i++) {
-            if (temperament[i] !== "Desconocida") {
-              Temperaments.findOrCreate({
-                where: { temperament: temperament[i] },
-              });
-            }
-          }
         
-        return temperament;
-    }
-    return TemperamentsDb;
+        for (let i = 0; i < temperaments.length; i++) {
+          for (let j = 0; j < temperaments[i].length; j++) {
+            temperament.push(temperaments[i][j].trim());
+          }
+        }
+        
+        let temperamentUnicos = temperament.filter((item,index)=>{
+          return temperament.indexOf(item)===index;
+        });
+
+        for (let i = 0; i < temperamentUnicos.length; i++) {
+          if (temperamentUnicos[i] !== "Desconocida") {
+            Temperaments.findOrCreate({
+              where: { temperament: temperamentUnicos[i] },
+            });
+          }
+        }
+        return temperamentUnicos;
+      }
+    return TemperamentsDb.map(t => t.temperament);
 }
 
 module.exports = getTemperamentsDb;

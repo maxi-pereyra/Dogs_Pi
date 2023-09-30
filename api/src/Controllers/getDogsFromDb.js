@@ -1,9 +1,12 @@
-const {Dogs } = require('../db')
+const { Dogs } = require('../db')
 
 const getDogsDb = async () => {
-    const allDogs = await Dogs.findAll();
-
-    return allDogs.map(dog => {
+    
+    const dogsDb = await Dogs.findAll();
+    console.log("base de datos")
+    //if(!dogsDb.length) throw new Error("No se encontraron perros en la base de datos ");
+    
+    return dogsDb.map(dog => {
         return {
             id: dog.id,
             name: dog.name,

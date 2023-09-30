@@ -1,30 +1,30 @@
 const {Dogs , Temperaments} = require('../db')
 const { Op } = require('sequelize')
 
-
-const postDog = async (image,name,height,weight,life_span,temperaments) => {
+const postDog = async (image,name,height,weight,life_span,temperament) => {
     const newDog = await Dogs.create({
         image,
         name,
         height,
         weight,
         life_span,
-        temperaments
     });
 
-  /*   Temperaments.forEach(async (t) => {
+    console.log(temperament)
+    temperament.forEach(async (t) => {
         let temperamentsDb = await Temperaments.findAll({ where: { temperament: t } });
-        await newDog.addPoderes(temperamentsDb);
+        console.log(temperamentsDb)
+        await newDog.addTemperaments(temperamentsDb);
       });
-     */
-    const dogTemperament = await Temperaments.findAll({
+    
+    /* const dogTemperament = await Temperaments.findAll({
         where:{
             temperament:{
-                    [Op.in]: Temperaments.map((temperament)=> temperament )
+                    [Op.in]: Temperaments.map((temperament)=> temperaments )
             }
         }
     })
-    await newDog.addPoderes(dogTemperament);
+    await newDog.addPoderes(dogTemperament); */
 
     return newDog
 

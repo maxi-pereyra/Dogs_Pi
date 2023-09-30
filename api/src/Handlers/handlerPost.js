@@ -8,14 +8,14 @@ const handlerPost = async (req,res) => {
             height,
             weight,
             life_span,
-            temperaments
+            temperament
         } = req.body;
         const response = await postDog( image,
             name,
             height,
             weight,
             life_span,
-            temperaments);
+            temperament);
         res.status(200).json(response)
         } catch (error) {
         res.status(404).json({error: error.message})
