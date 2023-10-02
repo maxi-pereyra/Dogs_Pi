@@ -1,8 +1,13 @@
 import React from 'react'
 
-const Search = () => {
+const Search = ({onSearch , handleChange}) => {
   return (
-    <div>Search</div>
+    <div>
+      <form >
+        <input onChange={handleChange} placeholder='buscar' />
+        <button onClick={onSearch}>?</button>
+      </form>
+    </div>
   )
 }
 

@@ -1,2 +1,6 @@
 export const GET_ALL_DOGS = "GET_ALL_DOGS"
 export const GET_DOG_DETAIL = "GET_DOG_DETAIL" 
+export const GET_DOG_BY_NAME = "GET_DOG_BY_NAME"
+export const GET_TEMPERAMENT_BD = "GET_TEMPERAMENT_BD"
+export const FILTER_BD = "FILTER_BD"
+export const SORT_BY_TEMPERAMENT = "SORT_BY_TEMPERAMENT"

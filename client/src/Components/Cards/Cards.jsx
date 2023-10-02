@@ -1,11 +1,12 @@
 import React from 'react'
 import Card from '../Card/Card'
+import style from './Cards.module.css';
 
 const Cards = ({dogs}) => {
   return (
-    <div>
+    <div className={style.cards}>
       {
-        dogs?.map(({id,name,weight,height,life_span,image}) => {
+        dogs?.map(({id,name,weight,height,life_span,image,temperament}) => {
           return (
             <Card 
             key={id}
@@ -15,6 +16,7 @@ const Cards = ({dogs}) => {
             height={height}
             life_span={life_span}
             image={image}
+            temperament={temperament}
             />
           )
         })

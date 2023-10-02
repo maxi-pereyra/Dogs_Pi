@@ -1,10 +1,16 @@
-import { GET_ALL_DOGS} from "./Actions-types";
+import { GET_ALL_DOGS ,
+         GET_DOG_BY_NAME, 
+         GET_DOG_DETAIL, 
+         FILTER_BD,
+         GET_TEMPERAMENT_BD,
+        SORT_BY_TEMPERAMENT } from "./Actions-types";
 
 const initialState = [
     {
         dogs: [],
         dogsCopy: [],
         temperament:[],
+        detail: []
     }
 ];
 
@@ -15,6 +21,74 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 dogs: action.payload,
                 dogsCopy: [...action.payload]
+            }
+        }
+        case GET_DOG_DETAIL:{
+            return{
+                ...state,
+                detail: action.payload
+            }
+        }
+        case GET_DOG_BY_NAME:{
+            return{
+                ...state,
+                dogs: action.payload
+            }
+        }
+        case FILTER_BD:{
+            const copy = [...state.dogsCopy];
+            if(action.payload === "api"){
+                const apiDogs = copy.filter(element => typeof element.id ==='number')
+                return{
+                    ...state,
+                    dogs: apiDogs
+                }
+            }else if( action.payload === "bd"){
+                const dbDogs = copy.filter( element => typeof element.id === "string")
+                return{
+                    ...state,
+                    dogs: dbDogs
+                }
+            }else if( action.payload === "all"){
+                const getAllDogs = [...state.dogsCopy]
+                return{
+                    ...state,
+                    dogs: getAllDogs
+                }
+            }
+            break;
+        }
+        case GET_TEMPERAMENT_BD: {
+            return {
+                ...state,
+                temperament: action.payload 
+            }
+        }
+        case SORT_BY_TEMPERAMENT: {
+            const copy = state.dogsCopy;
+            
+            const dogsClean = copy.map(dog => 
+                {   
+                    dog.temperament?.split(",")
+                    for(let i=0 ; i < dog.temperament?.length ; i++ ){
+                        dog.temperament[i].trim()
+                    }
+                    return{
+                        id: dog.id,
+                        name: dog.name,
+                        weight: dog.weight.metric,
+                        height: dog.height.metric,
+                        life_span: dog.life_span,
+                        image: dog.image,
+                        temperament: dog.temperament
+                    }
+                })
+
+            const dogsFiltered = dogsClean.filter(ele => ele.temperament?.includes(action.payload))   
+            
+            return{
+                ...state,
+                dogs: dogsFiltered
             }
         }
         default:

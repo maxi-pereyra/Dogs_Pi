@@ -3,7 +3,7 @@ const { Dogs } = require('../db')
 const getDogsDb = async () => {
     
     const dogsDb = await Dogs.findAll();
-    console.log("base de datos")
+    
     //if(!dogsDb.length) throw new Error("No se encontraron perros en la base de datos ");
     
     return dogsDb.map(dog => {

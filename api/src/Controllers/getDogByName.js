@@ -27,8 +27,9 @@ const getDogByName = async (name) => {
         image:dogApi[0].image?.url,
         //temperament: dogApi[0].temperament,
     }]
+    console.log(responseDog)
     
-     let allSearchedDogs = [...dogDb, ...responseDog]
+    let allSearchedDogs = [...dogDb, ...responseDog]
      if (allSearchedDogs.length === 0) {
          throw new Error('No hay perros con ese nombre')
         } 
