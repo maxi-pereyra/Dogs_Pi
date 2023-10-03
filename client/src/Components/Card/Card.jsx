@@ -12,8 +12,8 @@ const Card = ({id,name,weight,height,life_span,image,temperament}) => {
       <NavLink to={`/detail/:${id}`}>
         <button className={style.detailBtn}>Mas detalles</button>
       </NavLink>
-      <h4>Altura: {weight}</h4>
-      <h4>Peso: {height}</h4>
+      <h4>Altura: {height}</h4>
+      <h4>Peso: {weight}</h4>
       <h4>Esperanza de vida: {life_span}</h4>
       <h4>temperamentos: {temperament}</h4>
     </div>

@@ -13,7 +13,7 @@ function Home() {
   
   const handleChange = (event) =>{
     setName(event.target.value.toLowerCase());
-    console.log(event.target.value)
+    console.log("nombre:",event.target.value)
   }
 
   const onSearch = async (event) => {

@@ -1,5 +1,12 @@
 import axios from 'axios';
-import { GET_ALL_DOGS , GET_DOG_DETAIL , GET_DOG_BY_NAME , FILTER_BD , GET_TEMPERAMENT_BD, SORT_BY_TEMPERAMENT} from "./Actions-types"
+import { GET_ALL_DOGS ,
+         GET_DOG_DETAIL ,
+         GET_DOG_BY_NAME ,
+         FILTER_BD ,
+         GET_TEMPERAMENT_BD,
+         SORT_BY_TEMPERAMENT,
+         SORT_BY_ALFABETICO,
+        SORT_BY_PESO } from "./Actions-types"
 
 const URL = 'http://localhost:3001';
 
@@ -61,16 +68,16 @@ export const getDogByName = (name) => {
             const { data } = await axios.get(`${URL}/name?name=${name}`);
             console.log(data)
             
-            const dog = data?.map((d) => ({
-                id: d.id,
-                name: d.name,
-                weight: d.weight,
-                height: d.height,
-                life_span: d.life_span,
-                image: d.image,
-                temperament: d.temperament
-            }));
-
+            const dog = {
+                id: data[0].id,
+                name: data[0].name,
+                weight: data[0].weight,
+                height: data[0].height,
+                life_span: data[0].life_span,
+                image: data[0].image,
+                temperament: data[0].temperament
+            };
+            console.log("data: ", dog)
             return dispatch({
                 type: GET_DOG_BY_NAME,
                 payload: dog
@@ -112,4 +119,18 @@ export const sortByTemperament = (filterTemperament) => {
             type: SORT_BY_TEMPERAMENT ,
             payload: filterTemperament
         }
+}
+
+export const SortByAlfabetic = (orderAlfabetico) => {
+        return {
+            type: SORT_BY_ALFABETICO,
+            payload: orderAlfabetico
+        }
+}
+
+export const sortByPeso = (orderPeso) => {
+    return{
+        type: SORT_BY_PESO,
+        payload: orderPeso
+    }
 }

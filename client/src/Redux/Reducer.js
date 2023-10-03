@@ -3,7 +3,9 @@ import { GET_ALL_DOGS ,
          GET_DOG_DETAIL, 
          FILTER_BD,
          GET_TEMPERAMENT_BD,
-        SORT_BY_TEMPERAMENT } from "./Actions-types";
+        SORT_BY_TEMPERAMENT,
+        SORT_BY_ALFABETICO, 
+        SORT_BY_PESO} from "./Actions-types";
 
 const initialState = [
     {
@@ -32,7 +34,7 @@ const reducer = (state = initialState, action) => {
         case GET_DOG_BY_NAME:{
             return{
                 ...state,
-                dogs: action.payload
+                dogs: [action.payload]
             }
         }
         case FILTER_BD:{
@@ -65,7 +67,7 @@ const reducer = (state = initialState, action) => {
             }
         }
         case SORT_BY_TEMPERAMENT: {
-            const copy = state.dogsCopy;
+            const copy = [...state.dogsCopy];
             
             const dogsClean = copy.map(dog => 
                 {   
@@ -76,8 +78,8 @@ const reducer = (state = initialState, action) => {
                     return{
                         id: dog.id,
                         name: dog.name,
-                        weight: dog.weight.metric,
-                        height: dog.height.metric,
+                        weight: dog.weight,
+                        height: dog.height,
                         life_span: dog.life_span,
                         image: dog.image,
                         temperament: dog.temperament
@@ -91,6 +93,52 @@ const reducer = (state = initialState, action) => {
                 dogs: dogsFiltered
             }
         }
+
+        case SORT_BY_ALFABETICO:{
+                const copy = [...state.dogsCopy];
+                const dogsOrderName = copy.sort((a,b)=>{
+                    const nameA = a.name.toLowerCase();
+                    const nameB = b.name.toLowerCase();
+                    if(action.payload === 'ascendente') return nameA.localeCompare(nameB)
+                    else return nameB.localeCompare(nameA)
+                }) 
+                return {
+                    ...state,
+                    dogs: dogsOrderName
+                }  
+        }
+        case SORT_BY_PESO:{
+            const copy = [...state.dogsCopy];
+            const orderPeso = copy.map(dog => {
+                let pesoAux = dog.weight.split("-");
+                console.log(pesoAux)
+                /* pesoAux[0] = parseInt(pesoAux[0]); */
+                const pesoMax = parseInt(pesoAux[pesoAux.length-1])
+                console.log(pesoMax)
+                return {
+                    id: dog.id,
+                    name: dog.name,
+                    weight: dog.weight,
+                    height: dog.height,
+                    life_span: dog.life_span,
+                    image: dog.image,
+                    temperament: dog.temperament,
+                    aux: pesoMax
+                }
+            })
+            orderPeso.sort((a,b)=>{
+                if(action.payload==='ascendente'){
+                    return a.aux - b.aux;  
+                } 
+                else {
+                    return b.aux - a.aux;
+                } 
+            }) 
+            return{
+                ...state,
+                dogs: orderPeso
+            }
+        }        
         default:
             return {...state}
     }

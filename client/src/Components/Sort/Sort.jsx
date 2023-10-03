@@ -1,6 +1,6 @@
 import React from 'react'
 import { useEffect} from 'react';
-import { filterBdApi , getAllTemperament, sortByTemperament } from '../../Redux/Actions';
+import { filterBdApi , getAllTemperament, sortByTemperament , SortByAlfabetic , sortByPeso } from '../../Redux/Actions';
 import { useSelector , useDispatch } from 'react-redux';
 
 
@@ -21,6 +21,16 @@ const Sort = () => {
         dispatch(sortByTemperament(filterTemperament))
     }
     
+    const handlerSortByAlfabetic = (event) => {
+        const orderAlfabetic = event.target.value; 
+        dispatch(SortByAlfabetic(orderAlfabetic))
+    }
+
+    const handlerSortByPeso = (event) => {
+        const orderPeso = event.target.value;
+        dispatch(sortByPeso(orderPeso))
+    }
+
     useEffect(()=>{
     dispatch(getAllTemperament())     
         
@@ -44,6 +54,20 @@ const Sort = () => {
                     {ele}
                 </option>)
             }
+        </select>
+
+        <select onChange={handlerSortByAlfabetic}>
+            Alfabeticamente
+            <option value="" disabled> Alfabeticamente </option>
+            <option value="ascendente">A - Z </option>
+            <option value="descendente">Z - A </option>
+        </select>
+
+        <select onChange={handlerSortByPeso}>
+            Peso
+            <option value="" disabled> Peso </option>
+            <option value="ascendente">A - Z</option>
+            <option value="descendente">Z - A</option>
         </select>
     </div>
   )
