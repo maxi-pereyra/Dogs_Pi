@@ -5,14 +5,18 @@ import { GET_ALL_DOGS ,
          GET_TEMPERAMENT_BD,
         SORT_BY_TEMPERAMENT,
         SORT_BY_ALFABETICO, 
-        SORT_BY_PESO} from "./Actions-types";
+        SORT_BY_PESO,
+        POST_DOG,
+        CLEAN_DETAIL} from "./Actions-types";
 
 const initialState = [
     {
         dogs: [],
         dogsCopy: [],
         temperament:[],
-        detail: []
+        detail: [],
+        cleanDetail: null,
+        dogCreado:null
     }
 ];
 
@@ -34,7 +38,7 @@ const reducer = (state = initialState, action) => {
         case GET_DOG_BY_NAME:{
             return{
                 ...state,
-                dogs: [action.payload]
+                dogs: action.payload
             }
         }
         case FILTER_BD:{
@@ -138,7 +142,21 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 dogs: orderPeso
             }
+        }
+        case POST_DOG: {
+                
+                return{
+                    ...state,
+                    dogs: [...state.dogsCopy,action.payload],
+                    dogCreado: action.payload
+                } 
         }        
+        case CLEAN_DETAIL:{
+            return{
+                ...state,
+                detail: null
+            }
+        }
         default:
             return {...state}
     }

@@ -6,7 +6,9 @@ import { GET_ALL_DOGS ,
          GET_TEMPERAMENT_BD,
          SORT_BY_TEMPERAMENT,
          SORT_BY_ALFABETICO,
-        SORT_BY_PESO } from "./Actions-types"
+        SORT_BY_PESO,
+        POST_DOG,
+        CLEAN_DETAIL } from "./Actions-types"
 
 const URL = 'http://localhost:3001';
 
@@ -36,14 +38,15 @@ export const getAllDogs = () => {
 export const getDogById =  (id) => {
     return async ( dispatch ) =>{
         try {
+            console.log("by id:",id)
             const { data } = await axios.get(`http://localhost:3001/dogs/${id}`)
             
             //if(!data || data.length === 0 ) throw new Error(`no se encontro perro con id ${id}`)
-                console.log(data)
+                console.log("by id",data)
                 const dog = {
                     id: data[0].id,
                     name: data[0].name,
-                    weight: data[0].weight,
+                    weight: data[0].weight, 
                     height: data[0].height,
                     life_span: data[0].life_span,
                     image: data[0].image,
@@ -65,18 +68,21 @@ export const getDogById =  (id) => {
 export const getDogByName = (name) => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.get(`${URL}/name?name=${name}`);
-            console.log(data)
+            const {data}  = await axios.get(`${URL}/name?name=${name}`);
+       
             
-            const dog = {
-                id: data[0].id,
-                name: data[0].name,
-                weight: data[0].weight,
-                height: data[0].height,
-                life_span: data[0].life_span,
-                image: data[0].image,
-                temperament: data[0].temperament
-            };
+            const dog = data.map(dogi => {
+                return {
+                    id: dogi.id,
+                    name: dogi.name,
+                    weight: dogi.weight,
+                    height: dogi.height,
+                    life_span: dogi.life_span,
+                    image: dogi.image,
+                    temperament: dogi.temperament
+                };
+            })
+
             console.log("data: ", dog)
             return dispatch({
                 type: GET_DOG_BY_NAME,
@@ -102,7 +108,7 @@ export const getAllTemperament = () => {
 
             if(!data || data.length === 0) throw new Error("no se encontraron perros")
             
-            console.log(data)
+            
             return dispatch({
                 type: GET_TEMPERAMENT_BD,
                 payload: data
@@ -132,5 +138,29 @@ export const sortByPeso = (orderPeso) => {
     return{
         type: SORT_BY_PESO,
         payload: orderPeso
+    }
+}
+
+export const postDogs = (dogCreado) => {
+    return async (dispatch) => {
+        try {
+            const response = await axios.post(`${URL}/dogs`,dogCreado);
+            const dogCreate = response.data;
+            console.log("reducer",dogCreate)
+            dispatch({
+                type: POST_DOG,
+                payload: dogCreate
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+export const cleanDetail = () => {
+    return async (disaptch) => {
+        return disaptch({
+            type: CLEAN_DETAIL,
+        })
     }
 }

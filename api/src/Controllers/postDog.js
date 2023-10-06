@@ -10,23 +10,23 @@ const postDog = async (image,name,height,weight,life_span,temperament) => {
         life_span,
     });
 
-    console.log(temperament)
+    
     temperament.forEach(async (t) => {
         let temperamentsDb = await Temperaments.findAll({ where: { temperament: t } });
-        console.log(temperamentsDb)
+     
         await newDog.addTemperaments(temperamentsDb);
       });
     
-    /* const dogTemperament = await Temperaments.findAll({
-        where:{
-            temperament:{
-                    [Op.in]: Temperaments.map((temperament)=> temperaments )
-            }
-        }
+    
+    return ({
+        id: newDog.id,
+        image: newDog.image,
+        name: newDog.name,
+        height: newDog.height,
+        weight: newDog.weight,
+        life_span: newDog.life_span,
+        temperament: temperament 
     })
-    await newDog.addPoderes(dogTemperament); */
-
-    return newDog
 
 }
 

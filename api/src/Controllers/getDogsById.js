@@ -8,23 +8,26 @@ const URL = 'https://api.thedogapi.com/v1/breeds'
 
 
 const getDogsById = async (id) => {
-    console.log(typeof id , id)
-    console.log(isNaN(id))
-    if(!isNaN(id)){
-        const dogsDb = await Dogs.findByPk(id);
+
+    let esUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
+   
+    if(esUUID){
+        const dogsDb = await Dogs.findByPk(id, {include:[Temperaments]});
+        
+        console.log("detalle", dogsDb)
         if(!dogsDb) throw new Error("no se encontraron perror en la base de datos")
         
-        const dogId = dogsDb.ToJSON();//garantiza automáticamente que las instancias se editarán JSON.stringify
-        
-        return {
-            id: dogId.id,
-            name: dogId.name,
-            weight: dogId.weight.metric,
-            height: dogId.height.metric,
-            life_span: dogId.life_span,
-            temperament: dogId.temperament,
-            image: dogId.image
-        }
+        //const dogId = dogsDb.ToJSON();//garantiza automáticamente que las instancias se editarán JSON.stringify
+        const temperamentAux = dogsDb.Temperaments.map(ele => ele.temperament)
+        return [{
+            id: dogsDb.id,
+            name: dogsDb.name,
+            weight: dogsDb.weight,
+            height: dogsDb.height,
+            life_span: dogsDb.life_span,
+            temperament: temperamentAux.join(","),
+            image: dogsDb.image
+        }]
     }
 
     
@@ -45,7 +48,7 @@ const getDogsById = async (id) => {
         
     });
     
-    const  raza =  dogApi?.filter( dog => ":"+dog.id == id);
+    const  raza =  dogApi?.filter( dog => dog.id == id);
 
     
     return raza;

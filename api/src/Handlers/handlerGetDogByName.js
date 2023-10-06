@@ -3,7 +3,6 @@ const getDogByName = require('../Controllers/getDogByName');
 const handlerGetDogByName = async (req,res) => {
     try {
         const {name} = req.query;
-        console.log(name)
         if(name){
             const dogsRaza = await getDogByName(name);
             return res.status(200).json(dogsRaza);
