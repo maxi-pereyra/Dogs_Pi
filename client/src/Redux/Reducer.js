@@ -114,11 +114,9 @@ const reducer = (state = initialState, action) => {
         case SORT_BY_PESO:{
             const copy = [...state.dogsCopy];
             const orderPeso = copy.map(dog => {
-                let pesoAux = dog.weight.split("-");
-                console.log(pesoAux)
-                /* pesoAux[0] = parseInt(pesoAux[0]); */
+                let pesoAux = dog.weight.split("-");            
                 const pesoMax = parseInt(pesoAux[pesoAux.length-1])
-                console.log(pesoMax)
+               
                 return {
                     id: dog.id,
                     name: dog.name,

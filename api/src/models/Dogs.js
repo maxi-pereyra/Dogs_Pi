@@ -11,25 +11,12 @@ module.exports = (sequelize) => {
       
       image:{
         type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          notEmpty: {
-            msg: 'Se requiere una imagen para poder crearse',
-          },
-          isUrl: {
-            msg: 'La imagen tiene que ser una url válida',
-          },
-        },
+        allowNull: true,
+        defaultValue: "no hay imagen por el momento",
       },
       name:{
         type: DataTypes.STRING,
         allowNull: false,
-        validate:{
-          len:{
-            args:[4,15],
-            msg:"el nombre solo puede tener entre 4 y 15 caracteres"
-          }
-        }
       },
       height:{
         type: DataTypes.STRING,

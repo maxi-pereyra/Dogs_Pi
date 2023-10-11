@@ -1,12 +1,12 @@
-.paginado_cont{
-    display: inline-flex;
-    margin-top: 15px;
-}
 
-.boton{
+.sort_cont{
+    display: flex;
+    justify-content: center;
+}
+.select{
     background-color: #FFB400;
     border-radius: 25px;
-    border: solid 2px black;
+    border:  solid 2px black;
     font-size: 15px;
     color: #161515;
     box-decoration-break: slice;

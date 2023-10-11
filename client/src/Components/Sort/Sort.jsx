@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect} from 'react';
 import { filterBdApi , getAllTemperament, sortByTemperament , SortByAlfabetic , sortByPeso } from '../../Redux/Actions';
 import { useSelector , useDispatch } from 'react-redux';
-
+import style from './Sort.module.css'
 
 
 const Sort = () => {
@@ -38,15 +38,15 @@ const Sort = () => {
 
     
   return (
-    <div>
-        <select onChange={handlerFiltered}>
+    <div className={style.sort_cont}>
+        <select className={style.select} onChange={handlerFiltered}>
             Origen
             <option value="all">Todos</option>
             <option value="api">Nativos</option>
             <option value="bd">Creados</option>
         </select>
 
-        <select onChange={handlerSortTemperament}>
+        <select className={style.select} onChange={handlerSortTemperament}>
             Temperamentos
             <option value="" disabled> Temperamento </option>  
             {
@@ -56,14 +56,14 @@ const Sort = () => {
             }
         </select>
 
-        <select onChange={handlerSortByAlfabetic}>
+        <select className={style.select} onChange={handlerSortByAlfabetic}>
             Alfabeticamente
             <option value="" disabled> Alfabeticamente </option>
             <option value="ascendente">A - Z </option>
             <option value="descendente">Z - A </option>
         </select>
 
-        <select onChange={handlerSortByPeso}>
+        <select className={style.select} onChange={handlerSortByPeso}>
             Peso
             <option value="" disabled> Peso </option>
             <option value="ascendente">A - Z</option>

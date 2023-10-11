@@ -1,0 +1,17 @@
+.search_container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  
+  .search_container input {
+    margin-right: 5px;
+    
+  }
+  
+  .search_container button {
+    margin-left: 5px;
+    background-color: #FFB400;
+    font-family: Sniglet, cursive;
+    font-size: 15px;
+}

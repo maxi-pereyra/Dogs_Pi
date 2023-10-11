@@ -19,27 +19,35 @@ const Details = () => {
 
   const dog = useSelector(state => state.detail)
   
-   console.log(dog)
   return (
-    <div >
-     {
-      dog?.name ? (
-        <div className={style.container}>
-          <h4>Raza: {dog?.name}</h4>
-            <div >
-              <img src={dog?.image} alt={dog?.name} className={style.img}/>
-            </div>
-          <h4>Altura: {dog?.weight}</h4>
-          <h4>Peso: {dog?.height}</h4>
-          <h4>Esperanza de vida: {dog?.life_span}</h4>
-          <h4>Temperamento: {dog?.temperament}</h4>
-        </div>
-      ) : (<div >Loading...</div>)
-     }
-     <Link to='/home'>
-      <button>Volver</button>
-     </Link>
-    </div>
+  <div className={style.conteiner}>
+    
+      <div  className={style.card_container}> 
+      {
+        dog?.name ? (
+         <>
+          <div className={style.image_sep}>
+              <div className={style.image_content}>
+                <img src={dog?.image} alt={dog?.name} className={style.image}/>
+              </div>
+          </div>
+              <div className={style.detalle}>
+                <h3 className={style.raza}>{dog?.name} <p>{dog?.id}</p></h3>
+                <h4>Altura: {dog?.weight}</h4>
+                <h4>Peso: {dog?.height}</h4>
+                <h4>Esperanza de vida: {dog?.life_span}</h4>
+                <h4>Temperamento: {dog?.temperament}</h4>
+                <div>
+                    <Link to='/home'>
+                      <button className={style.boton}>Volver</button>
+                    </Link>
+                </div> 
+              </div>
+         </> 
+        ) : (<div className={style.loading}>Loading...</div>)
+      }
+      </div>
+  </div>
   )
 }
 

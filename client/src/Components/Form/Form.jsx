@@ -5,7 +5,7 @@ import { useSelector , useDispatch } from 'react-redux';
 import { useState ,useEffect } from 'react';
 import { getAllTemperament } from '../../Redux/Actions';
 import validacionFormulario from '../../utils/validacionFormulario';
-
+import style from './Form.module.css';
 
 const Form = () => {
 
@@ -105,68 +105,75 @@ const Form = () => {
     },[dispatch])
   ///////
   return (
-    <div>Form
+    <div className={style.container}>
       <form onSubmit={handlerSubmit}>
+  
         <h2>Crea tu perro</h2>
 
-        <div>
+        <div className={style.nameCont}>
           <label  >Raza:</label>
           <input onChange={handlerChange} type="text"
            placeholder="ingresa la raza" name='name'/>
-           {<p>{error.name}</p>}
+           {<p className={style.errors}>{error.name}</p>}
         </div>
 
-        <div>
+        <div className={style.imageCont}>
           <label >Imagen:</label>
           <input onChange={handlerChange} type="text" 
           placeholder="ingrese url de la imagen" name='image' />
           
         </div>
 
-        <div>
+        <div className={style.heightCont}>
           <label >Altura Min:</label>
-          <input onChange={handlerChange}  type="text" 
+          <input onChange={handlerChange}  type="number" 
           placeholder="ingrese altura min " name='heightMin' />
-           { <p>{error.heightMin}</p>}
+           { <p className={style.errors}>{error.heightMin}</p>}
 <br />
           <label >Altura Max:</label>
-          <input onChange={handlerChange}  type="text" 
+          <input onChange={handlerChange}  type="number" 
           placeholder="ingrese altura max" name='heightMax' 
           disabled={disableHeight} />
-          { <p>{error.heightMax}</p>}
+          { <p className={style.errors}>{error.heightMax}</p>}
         </div>
 
-        <div>
+        <div className={style.weightCont}>
           <label >Peso Min:</label>
-          <input onChange={handlerChange} type="text" 
+          <input onChange={handlerChange} type="number" 
           placeholder="ingrese ingrese peso min " name='weightMin' />
-          {<p>{error.weightMin}</p>}
+          {<p className={style.errors}>{error.weightMin}</p>}
 <br />
           <label >Peso Max:</label>
-          <input onChange={handlerChange} type="text" 
+          <input onChange={handlerChange} type="number" 
           placeholder="ingrese ingrese peso max " name='weightMax'
           disabled={disableWeight} />
-          { <p>{error.weightMax}</p>}
+          { <p className={style.errors}>{error.weightMax}</p>}
         </div>
 
-        <div>
+        <div className={style.life_spanCont}>
           <label >Rango de esperanza de vida entre: </label>
-          <input onChange={handlerChange} type="text" 
+          <input onChange={handlerChange} type="number" 
            name='life_span_min' /> 
-           
-           <input onChange={handlerChange} type="text" 
+             { <p className={style.errors}>{error.life_span_min}</p>}
+        </div>   
+        
+        <div className={style.life_spanCont}>
+           <label >&</label>
+           <input onChange={handlerChange} type="number" 
            name='life_span_max' /> 
+             { <p className={style.errors}>{error.life_span_max}</p>}
         </div>
 
-        <div>
+        <div className={style.temperamentCont}>
           <label >Temperametos:</label>
           <select onChange={handlerChange} name="temperament" >
           {
-                temperaments?.map((ele,index) => <option key={index} id={ele} value={ele}>
+            temperaments?.map((ele,index) => <option key={index} id={ele} value={ele}>
                     {ele}
                 </option>)
             }
           </select>
+            {<p className={style.errors}>{error.temperament}</p>}
           {
             dog.temperament.map((e) => <div key={e} >
                                         <span id={e}>{e} </span>
@@ -174,20 +181,22 @@ const Form = () => {
           }
           { 
             dog.temperament.length===0 ? <p></p> :
-            <button  onClick={removeTemperament} name='temperament' type='button' > clean </button> 
+            <button className={style.button} onClick={removeTemperament} name='temperament' type='button' > clean </button> 
           }
 
-            {<p>{error.temperament}</p>}
         </div>
 
         <hr />
-        <input type="submit" disabled={disableFunction()}/>
+        <button className={` ${style.createBtn} ${disableFunction() ? style.disabled : ''}`} disabled={disableFunction()} >Crear perro</button>
+
         
       </form>
       <br /><br /><br />
-      <Link to={"/home"}>
-        <button>Volver</button>
-      </Link>
+      <div className={style.btn_cnt}>
+        <Link to={"/home"}>
+          <button className={style.button}>Volver</button>
+        </Link>
+      </div>
     </div>
   )
 }

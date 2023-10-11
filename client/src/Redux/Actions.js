@@ -38,11 +38,8 @@ export const getAllDogs = () => {
 export const getDogById =  (id) => {
     return async ( dispatch ) =>{
         try {
-            console.log("by id:",id)
+           
             const { data } = await axios.get(`http://localhost:3001/dogs/${id}`)
-            
-            //if(!data || data.length === 0 ) throw new Error(`no se encontro perro con id ${id}`)
-                console.log("by id",data)
                 const dog = {
                     id: data[0].id,
                     name: data[0].name,
@@ -146,7 +143,7 @@ export const postDogs = (dogCreado) => {
         try {
             const response = await axios.post(`${URL}/dogs`,dogCreado);
             const dogCreate = response.data;
-            console.log("reducer",dogCreate)
+           
             dispatch({
                 type: POST_DOG,
                 payload: dogCreate

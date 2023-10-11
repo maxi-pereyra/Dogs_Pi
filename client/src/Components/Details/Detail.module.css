@@ -1,21 +1,100 @@
-.container {
-    background-color: #2368bb;
-    /* background-color: rgba(182, 168, 168, 0.3); */
-    border-radius: 20px;
-    border: 3px solid #9fd3c7;
-    width: 200px;
-    position: relative;
-    transition: transform 0.3s ease-in-out;
-    /* padding: 10px; */
+.conteiner{
+	top : 0;
+	font-size : 5rem;
+	font-weight : 10px;
+	color : #00A6ED;
 }
 
-.img {
-    border-radius: 20px;
-    display: flex;
-    align-items: flex;
-    position: 0;
-    top: 0;
-    width: 200px;
-    height: 200px;
-    border-bottom: 3px solid #72e2c8;
+.card_container{
+    position : relative;
+	height: 440px;
+	width: 900px;
+	margin : 200px auto;
+	background-color : #00A6ED;
+	-webkit-box-shadow: 10px 10px 93px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 10px 10px 93px 0px rgba(0,0,0,0.75);
+	box-shadow: 10px 10px 93px 0px #000000bf;
+   
+}
+
+.image_sep{
+    float : left;
+	position : relative ;
+	left : -60px;
+	top : -60px;
+	height : 420px;
+	width : 580px;
+	-webkit-box-shadow: 10px 10px 60px 0px rgba(233, 132, 17, 0.75);
+	-moz-box-shadow: 10px 10px 60px 0px rgba(233, 132, 17,0.75);
+	box-shadow: 10px 10px 60px 0px rgba(233, 132, 17,0.75);
+	overflow: hidden;
+    background-color : #00A6ED;
+    
+}
+.image_content{
+    position: absolute;
+	left: 50%;
+	top: 50%;
+	height: auto;
+	width: 100%;
+	-webkit-transform: translate(-50%,-50%);
+	-ms-transform: translate(-50%,-50%);
+	transform: translate(-50%,-50%);
+}
+
+.image{
+    width: 100%;
+  height: auto;
+}
+
+@supports(object-fit: cover){
+    .image{
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+}
+
+.raza {
+    text-decoration: underline;
+    padding-top : 15px;
+	font-size : 1.3rem;
+	color : #4B4B4B;
+}
+
+.detalle{
+    margin-left: auto;
+    width: 50%; 
+}
+
+h4{
+    text-align: right;
+    margin-right: 20px;
+	padding-top : 10px;
+	font-size : 0.95rem;
+	line-height: 150%;
+	color : #0f0b0b;
+
+}
+
+.boton{
+    background-color: #FFB400;
+    border-radius: 25px;
+    border: solid 2px black;
+    font-size: 25px;
+    color: #161515;
+    box-decoration-break: slice;
+    margin-top: 0.5rem;
+    font-family: Sniglet, cursive;
+    cursor: pointer;
+}
+.boton:hover {
+    box-shadow:
+        0 15px 10px rgba(0, 0, 0, 0.9),
+        0 -2px 10px rgba(0, 0, 0, 0.9);
+}
+
+.loading{
+    font-size: 25px;
+    font-family: Sniglet, cursive;
 }

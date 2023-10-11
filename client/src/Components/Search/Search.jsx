@@ -1,12 +1,13 @@
 import React from 'react'
+import style from './Search.module.css'
 
 const Search = ({onSearch , handleChange}) => {
   return (
-    <div>
-      <form >
-        <input onChange={handleChange} placeholder='buscar' />
+    <div className={style.search_container}>
+      
+        <input  onChange={handleChange} placeholder='buscar' />
         <button onClick={onSearch}>?</button>
-      </form>
+      
     </div>
   )
 }

@@ -50,7 +50,6 @@ function Home() {
 
   return (
     <div>
-        <h2>Perros</h2> 
         <Navbar handleChange={handleChange} onSearch={onSearch}></Navbar>
         <Paginado handlePage={handlePage} page={current} total={totalPage}></Paginado>
         <Cards dogs={currentDogs}></Cards>

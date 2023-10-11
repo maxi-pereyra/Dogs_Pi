@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import style from './Paginado.module.css'
 
 const Paginado = ({page , total , handlePage}) => {
 
@@ -21,33 +22,33 @@ const Paginado = ({page , total , handlePage}) => {
     },[total])
 
     return (
-    <div>
-        <button onClick={() => handlePage(1)} disabled={page === 1}>
+    <div className={style.paginado_cont}>
+        <button className={style.boton} onClick={() => handlePage(1)} disabled={page === 1}>
             inicio
         </button>
-        <button onClick={() => handlePage(page - 1)} disabled={page === 1}>
+        <button className={style.boton}  onClick={() => handlePage(page - 1)} disabled={page === 1}>
             anterior
         </button>
         {
             NumberPageAux.map((number) => (
                  
-                <button
+                <button className={style.boton}
                 key={number}
                 onClick={() => handlePage(number)}
                 >
-                {number}
+                .{number}.
                 </button>
             ))
         }
         
-         <button onClick={() => handlePage(page + 1)} disabled={page === total}>
+         <button className={style.boton} onClick={() => handlePage(page + 1)} disabled={page === total}>
             next
         </button>
-        <button onClick={() => handlePage(total)} disabled={page === total}>
-            fin
+        <button className={style.boton} onClick={() => handlePage(total)} disabled={page === total}>
+            end
         </button>
     </div>
   )
 }
 
-export default Paginado
+export default Paginado 

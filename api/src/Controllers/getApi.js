@@ -4,11 +4,10 @@ require('dotenv').config()
 const apikey = process.env.API_KEY;
 
 const URL = 'https://api.thedogapi.com/v1/breeds'
-
 const getApi = async () => {
 
         const response = await axios(`${URL}?api_key=${apikey}`);
-
+      
         const dogApi = response.data.map((dogData) => {
 
             return {

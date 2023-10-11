@@ -2,7 +2,6 @@ const { Dogs , Temperaments } = require('../db')
 
 const getDogsDb = async () => {
     
-    //const dogsDb = await Dogs.findAll();
     const dogsDb = await Dogs.findAll({
         include: [
             {
@@ -13,9 +12,6 @@ const getDogsDb = async () => {
         ],
     });
     
-    if(!dogsDb.length) throw new Error("No se encontraron perros en la base de datos ");
-    //console.log("union",dogsDb[0].Temperaments[0].temperament)
-
     
     return dogsDb.map(dog => {
         let aux = dog.Temperaments.map(ele => ele.temperament)

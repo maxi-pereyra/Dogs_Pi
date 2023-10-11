@@ -1,0 +1,82 @@
+.container {
+    background-color: #00A6ED;
+    border: 3px solid #FFB400;
+    border-radius: 50px;
+    width: 55%;
+    height: 100%;
+    margin: 0 auto;
+    margin-top: 25px;
+    margin-bottom: 50px;
+    font-family: 'Sniglet', cursive;
+    color: black;
+}
+
+h2{
+    text-decoration: underline;
+}
+
+.nameCont,
+.imageCont,
+.heightCont,
+.weightCont,
+.life_spanCont,
+.temperamentCont {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    font-size: 17px;
+    max-width: 250px;
+    gap: 2.5px;
+}
+
+/* .nameCont input,
+.imageCont input,
+.heightCont input,
+.weightCont input,
+.life_spanCont input,
+.temperamentCont input{
+ 
+} */
+
+.errors {
+    color: #d81900;
+    font-size: 15px;
+    margin: 0 auto;
+    padding: 10px;
+ 
+}
+
+.button{
+    background-color: #FFB400;
+    border-radius: 25px;
+    border: solid 2px black;
+    font-size: 15px;
+    color: #161515;
+    box-decoration-break: slice;
+    margin-top: 0.5rem;
+    font-family: Sniglet, cursive;
+    cursor: pointer;
+}
+
+.btn_cnt{
+    margin-bottom: 5rem;
+}
+.createBtn{
+    background-color: #FFB400;
+    border-radius: 25px;
+    border: solid 2px black;
+    font-size: 15px;
+    color: #161515;
+    box-decoration-break: slice;
+    margin-top: 0.5rem;
+    font-family: Sniglet, cursive;
+    cursor: pointer;
+}
+
+.createBtn:hover {
+    cursor: pointer;
+}
+
+.createBtn:disabled:hover {
+    cursor: not-allowed;
+}

@@ -46,14 +46,14 @@ const validacionFormulario = (dogAux,errors,name) => {
     if(name === 'heightMax'){
 
         if( !numregex.test(dogAux.heightMax)) return {...errors , [name] : 'La altura debe ser un numero valido;'}
-        if( dogAux.heightMin > dogAux.heightMax) return {...errors , [name] : 'la altura min no debe superar la altura max'};
+        if( parseInt(dogAux.heightMin) > parseInt(dogAux.heightMax)) return {...errors , [name] : 'la altura min no debe superar la altura max'};
         if( dogAux.heightMax > 200 ) return {...errors, [name] :  'la alura max no puede superar 2 mts'};
         return {...errors , [name]:''}
 
     }
     if(name === 'weightMin'){
 
-        if( !numregex.test(dogAux.weightMin)) return {...errors , [name] : 'La altura debe ser un numero valido;'}
+        if( !numregex.test(dogAux.weightMin)) return {...errors , [name] : 'El peso debe ser un numero valido;'}
         if( !dogAux.weightMin > 0 ) return {...errors, [name] :  'El peso max no puede superar 99 kg'};
         return {...errors , [name]:''}
 
@@ -61,8 +61,8 @@ const validacionFormulario = (dogAux,errors,name) => {
     }
     if(name === 'weightMax'){
 
-        if( !numregex.test(dogAux.weightMax)) return {...errors, [name] : 'La altura debe ser un numero valido;'}
-        if(! dogAux.weightMin > dogAux.weightMax) return {...errors , [name] : 'El peso min no debe superar el peso max'};
+        if( !numregex.test(dogAux.weightMax)) return {...errors, [name] : 'El peso debe ser un numero valido;'}
+        if( parseInt(dogAux.weightMin) > parseInt(dogAux.weightMax)) return {...errors , [name] : 'El peso min no debe superar el peso max'};
         if( dogAux.weightMax > 150 ) return {...errors, [name] :  'El peso max no puede superar 150 kg'};
         return {...errors , [name]:''}
 
@@ -79,7 +79,7 @@ const validacionFormulario = (dogAux,errors,name) => {
     if(name === 'life_span_max'){
         
         if(!numregex.test(dogAux.life_span_max)) return {...errors, [name] : " El rango tiene que ser un numero valido"}
-        if( dogAux.life_span_min > dogAux.life_span_max) return {...errors, [name] : " El rango tiene que ser 'min - max' "}
+        if( parseInt(dogAux.life_span_min) > parseInt(dogAux.life_span_max)) return {...errors, [name] : " El rango tiene que ser 'min - max' "}
         if( !dogAux.life_span_min > 0 ) return {...errors, [name] :  'la esperanza de vida es invalida'};
         return {...errors , [name]:''}
 
