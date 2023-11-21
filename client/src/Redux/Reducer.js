@@ -7,7 +7,9 @@ import { GET_ALL_DOGS ,
         SORT_BY_ALFABETICO, 
         SORT_BY_PESO,
         POST_DOG,
-        CLEAN_DETAIL} from "./Actions-types";
+        CLEAN_DETAIL,
+        DELETE_DOG,
+        } from "./Actions-types";
 
 const initialState = [
     {
@@ -15,8 +17,8 @@ const initialState = [
         dogsCopy: [],
         temperament:[],
         detail: [],
-        cleanDetail: null,
-        dogCreado:null
+        dogCreado:null,
+        response: null,
     }
 ];
 
@@ -146,6 +148,7 @@ const reducer = (state = initialState, action) => {
                 return{
                     ...state,
                     dogs: [...state.dogsCopy,action.payload],
+                    dogsCopy: [...state.dogsCopy,action.payload],
                     dogCreado: action.payload
                 } 
         }        
@@ -153,6 +156,12 @@ const reducer = (state = initialState, action) => {
             return{
                 ...state,
                 detail: null
+            }
+        }
+        case DELETE_DOG:{
+            return{
+                ...state,
+                response: action.payload
             }
         }
         default:

@@ -2,26 +2,28 @@ import React from 'react'
 import Search from '../Search/Search';
 import Sort from '../Sort/Sort';
 import { Link } from 'react-router-dom';
-import style from './Navbar.module.css';
+//mport style from './Navbar.module.css';
+import {  Nav } from "react-bootstrap" ;
+import Button from 'react-bootstrap/Button';
 
-const Navbar = ({onSearch,handleChange}) => {
+const Navigation = ({onSearch,handleChange}) => {
   return (
-    <div className={style.navbar}>
-      <div>
-      <Sort></Sort>
-      </div>
-      <div>
-      <Search onSearch={onSearch} handleChange={handleChange}/>
-      </div>
-      <div>
-      <Link to={"/form"}>
-        <button className={style.button_crear}>CREAR PERRO</button>
-      </Link>
-      </div>
-      <hr />
-
+    <div className='container'>
+      <Nav variant="pills" >
+        <Nav.Item>
+        <Sort></Sort>
+        </Nav.Item>
+        <Nav.Item>
+            <Search onSearch={onSearch} handleChange={handleChange}/>
+        </Nav.Item>
+        <Nav.Item>
+          <Link to={"/form"}>
+              <Button> crear perro </Button>
+            </Link>
+        </Nav.Item>
+      </Nav>
     </div>
   )
 }
 
-export default Navbar
+export default Navigation

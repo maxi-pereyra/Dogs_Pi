@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react';
 import { useDispatch , useSelector } from 'react-redux';
-import { getDogById , cleanDetail } from '../../Redux/Actions';
+import { getDogById , cleanDetail , deleteDog} from '../../Redux/Actions';
 import { useParams } from 'react-router-dom';
 import style from './Detail.module.css';
 import { Link } from 'react-router-dom';
@@ -9,7 +9,14 @@ import { Link } from 'react-router-dom';
 const Details = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const res = useSelector(state => state.response)
 
+
+  const handlerDelete = () => {
+    dispatch(deleteDog(id.slice(1)))
+    console.log(id)
+  }
+  console.log(res)
   useEffect(() => {
     dispatch(getDogById(id.slice(1)))
     return () => {
@@ -37,10 +44,12 @@ const Details = () => {
                 <h4>Peso: {dog?.height}</h4>
                 <h4>Esperanza de vida: {dog?.life_span}</h4>
                 <h4>Temperamento: {dog?.temperament}</h4>
+                <h4>dueño: {dog?.dueño}</h4>
                 <div>
                     <Link to='/home'>
                       <button className={style.boton}>Volver</button>
                     </Link>
+                    <button onClick={handlerDelete} className={style.boton}>delete</button>
                 </div> 
               </div>
          </> 

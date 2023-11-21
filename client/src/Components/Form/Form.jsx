@@ -14,6 +14,7 @@ const Form = () => {
   const [dog,setDog] = useState({
     image:'',
     name:'',
+    dueño:'',
     heightMin:0,
     heightMax:0,
     weightMin:0,
@@ -26,6 +27,7 @@ const Form = () => {
   const [error,setError] = useState({ 
     image:'',
     name:'*El nombre es reqerido',
+    dueño: '',
     heightMin:"*La altura es requerida",
     heightMax:"*La altura es requerida",
     weightMin:"*El peso es requerida",
@@ -74,6 +76,7 @@ const Form = () => {
     let dogOk = {
       image:dog.image || '',
       name:dog.name,
+      dueño: dog.dueño,
       height: `${dog.heightMin} - ${dog.heightMax}` ,
       weight:`${dog.weightMin} - ${dog.weightMax}` ,
       life_span: `${dog.life_span_min} - ${dog.life_span_max}`,
@@ -114,54 +117,61 @@ const Form = () => {
           <label  >Raza:</label>
           <input onChange={handlerChange} type="text"
            placeholder="ingresa la raza" name='name'/>
-           {<p className={style.errors}>{error.name}</p>}
+           {<p className={style.errors}>{error?.name}</p>}
+        </div>
+
+        <div className={style.nameCont}>
+          <label  >Dueño:</label>
+          <input onChange={handlerChange} type="text"
+           placeholder="ingresa el dueño" name='dueño'/>
+           {<p className={style.errors}>{error?.dueño}</p>}
         </div>
 
         <div className={style.imageCont}>
           <label >Imagen:</label>
           <input onChange={handlerChange} type="text" 
           placeholder="ingrese url de la imagen" name='image' />
-          
+            {<p className={style.errors}>{error?.image}</p>}
         </div>
 
         <div className={style.heightCont}>
           <label >Altura Min:</label>
           <input onChange={handlerChange}  type="number" 
           placeholder="ingrese altura min " name='heightMin' />
-           { <p className={style.errors}>{error.heightMin}</p>}
+           { <p className={style.errors}>{error?.heightMin}</p>}
 <br />
           <label >Altura Max:</label>
           <input onChange={handlerChange}  type="number" 
           placeholder="ingrese altura max" name='heightMax' 
           disabled={disableHeight} />
-          { <p className={style.errors}>{error.heightMax}</p>}
+          { <p className={style.errors}>{error?.heightMax}</p>}
         </div>
 
         <div className={style.weightCont}>
           <label >Peso Min:</label>
           <input onChange={handlerChange} type="number" 
           placeholder="ingrese ingrese peso min " name='weightMin' />
-          {<p className={style.errors}>{error.weightMin}</p>}
+          {<p className={style.errors}>{error?.weightMin}</p>}
 <br />
           <label >Peso Max:</label>
           <input onChange={handlerChange} type="number" 
           placeholder="ingrese ingrese peso max " name='weightMax'
           disabled={disableWeight} />
-          { <p className={style.errors}>{error.weightMax}</p>}
+          { <p className={style.errors}>{error?.weightMax}</p>}
         </div>
 
         <div className={style.life_spanCont}>
           <label >Rango de esperanza de vida entre: </label>
           <input onChange={handlerChange} type="number" 
            name='life_span_min' /> 
-             { <p className={style.errors}>{error.life_span_min}</p>}
+             { <p className={style.errors}>{error?.life_span_min}</p>}
         </div>   
         
         <div className={style.life_spanCont}>
            <label >&</label>
            <input onChange={handlerChange} type="number" 
            name='life_span_max' /> 
-             { <p className={style.errors}>{error.life_span_max}</p>}
+             { <p className={style.errors}>{error?.life_span_max}</p>}
         </div>
 
         <div className={style.temperamentCont}>
@@ -173,7 +183,7 @@ const Form = () => {
                 </option>)
             }
           </select>
-            {<p className={style.errors}>{error.temperament}</p>}
+            {<p className={style.errors}>{error?.temperament}</p>}
           {
             dog.temperament.map((e) => <div key={e} >
                                         <span id={e}>{e} </span>

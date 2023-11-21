@@ -3,7 +3,7 @@ import { useEffect} from 'react';
 import { filterBdApi , getAllTemperament, sortByTemperament , SortByAlfabetic , sortByPeso } from '../../Redux/Actions';
 import { useSelector , useDispatch } from 'react-redux';
 import style from './Sort.module.css'
-
+import { Form } from 'react-bootstrap';
 
 const Sort = () => {
 
@@ -38,37 +38,42 @@ const Sort = () => {
 
     
   return (
-    <div className={style.sort_cont}>
-        <select className={style.select} onChange={handlerFiltered}>
-            Origen
-            <option value="all">Todos</option>
-            <option value="api">Nativos</option>
-            <option value="bd">Creados</option>
-        </select>
-
-        <select className={style.select} onChange={handlerSortTemperament}>
-            Temperamentos
-            <option value="" disabled> Temperamento </option>  
-            {
-                temperaments?.map(ele => <option key={ele} value={ele}>
+    <div className='container'>
+    <Form>          
+        <Form.Group controlId="formOrigen">
+            <Form.Select as="select" defaultValue="Origen"  onChange={handlerFiltered}>
+                <option value="Origen" disabled>Origen</option>
+                <option value="all">Todos</option>
+                <option value="api">Nativos</option>
+                <option value="bd">Creados</option>
+            </Form.Select>
+        </Form.Group>
+        <Form.Group controlId="formTemperamento">
+                <Form.Select as="select" defaultValue="Temperamento"  onChange={handlerSortTemperament}>
+                <option value="Temperamento" disabled>Temperamento</option>
+                {temperaments?.map(ele => (
+                    <option key={ele} value={ele}>
                     {ele}
-                </option>)
-            }
-        </select>
-
-        <select className={style.select} onChange={handlerSortByAlfabetic}>
-            Alfabeticamente
-            <option value="" disabled> Alfabeticamente </option>
-            <option value="ascendente">A - Z </option>
-            <option value="descendente">Z - A </option>
-        </select>
-
-        <select className={style.select} onChange={handlerSortByPeso}>
-            Peso
-            <option value="" disabled> Peso </option>
+                    </option>
+                ))}
+            </Form.Select>
+        </Form.Group>
+        <Form.Group controlId="formAlfabeticamente">
+            <Form.Select as="select" defaultValue="Alfabeticamente" onChange={handlerSortByAlfabetic}>
+            <option value="Alfabeticamente" disabled>Alfabeticamente</option>
             <option value="ascendente">A - Z</option>
             <option value="descendente">Z - A</option>
-        </select>
+            </Form.Select>
+        </Form.Group>
+
+        <Form.Group controlId="formPeso">
+            <Form.Select as="select" defaultValue="Peso" onChange={handlerSortByPeso}>
+            <option value="Peso" disabled>Peso</option>
+            <option value="ascendente">A - Z</option>
+            <option value="descendente">Z - A</option>
+            </Form.Select>
+        </Form.Group>
+    </Form>
     </div>
   )
 }

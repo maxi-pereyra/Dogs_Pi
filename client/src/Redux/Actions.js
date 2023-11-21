@@ -8,7 +8,9 @@ import { GET_ALL_DOGS ,
          SORT_BY_ALFABETICO,
         SORT_BY_PESO,
         POST_DOG,
-        CLEAN_DETAIL } from "./Actions-types"
+        CLEAN_DETAIL,
+        DELETE_DOG,
+        } from "./Actions-types"
 
 const URL = 'http://localhost:3001';
 
@@ -47,6 +49,7 @@ export const getDogById =  (id) => {
                     height: data[0].height,
                     life_span: data[0].life_span,
                     image: data[0].image,
+                    dueño: data[0].dueño,
                     temperament: data[0].temperament
                 }
                 
@@ -80,7 +83,6 @@ export const getDogByName = (name) => {
                 };
             })
 
-            console.log("data: ", dog)
             return dispatch({
                 type: GET_DOG_BY_NAME,
                 payload: dog
@@ -158,6 +160,18 @@ export const cleanDetail = () => {
     return async (disaptch) => {
         return disaptch({
             type: CLEAN_DETAIL,
+        })
+    }
+}
+
+export const deleteDog = (id) => {
+    return async (disaptch) => {
+        console.log(id)
+        const {response} = await axios.delete(`http://localhost:3001/delete/${id}`);
+        
+        return disaptch({
+            type: DELETE_DOG,
+            payload: response.data
         })
     }
 }
