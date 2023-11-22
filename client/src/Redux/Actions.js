@@ -40,8 +40,10 @@ export const getAllDogs = () => {
 export const getDogById =  (id) => {
     return async ( dispatch ) =>{
         try {
-           
+           console.log("id detalle" , id)
             const { data } = await axios.get(`http://localhost:3001/dogs/${id}`)
+           console.log("data" , data)
+
                 const dog = {
                     id: data[0].id,
                     name: data[0].name,
@@ -49,7 +51,7 @@ export const getDogById =  (id) => {
                     height: data[0].height,
                     life_span: data[0].life_span,
                     image: data[0].image,
-                    dueño: data[0].dueño,
+                    //dueño: data[0].dueño,
                     temperament: data[0].temperament
                 }
                 

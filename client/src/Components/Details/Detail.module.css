@@ -2,7 +2,6 @@
 	top : 0;
 	font-size : 5rem;
 	font-weight : 10px;
-	color : #00A6ED;
 }
 
 .card_container{
@@ -10,7 +9,6 @@
 	height: 440px;
 	width: 900px;
 	margin : 200px auto;
-	background-color : #00A6ED;
 	-webkit-box-shadow: 10px 10px 93px 0px rgba(0,0,0,0.75);
 	-moz-box-shadow: 10px 10px 93px 0px rgba(0,0,0,0.75);
 	box-shadow: 10px 10px 93px 0px #000000bf;
@@ -27,9 +25,7 @@
 	-webkit-box-shadow: 10px 10px 60px 0px rgba(233, 132, 17, 0.75);
 	-moz-box-shadow: 10px 10px 60px 0px rgba(233, 132, 17,0.75);
 	box-shadow: 10px 10px 60px 0px rgba(233, 132, 17,0.75);
-	overflow: hidden;
-    background-color : #00A6ED;
-    
+	overflow: hidden;  
 }
 .image_content{
     position: absolute;

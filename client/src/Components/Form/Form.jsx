@@ -6,8 +6,10 @@ import { useState ,useEffect } from 'react';
 import { getAllTemperament } from '../../Redux/Actions';
 import validacionFormulario from '../../utils/validacionFormulario';
 import style from './Form.module.css';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
-const Form = () => {
+const FormCreate = () => {
 
   const dispatch = useDispatch();
   const temperaments = useSelector(state => state.temperament);
@@ -108,7 +110,145 @@ const Form = () => {
     },[dispatch])
   ///////
   return (
-    <div className={style.container}>
+    <Form onSubmit={handlerSubmit}>
+      <h2>Crea tu perro</h2>
+      {/*  Raza  */}
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Raza </Form.Label>
+        <Form.Control onChange={handlerChange} type="text"
+           placeholder="ingresa la raza" name='name'/>
+        <Form.Text className="text-muted">
+          We'll never share your email with anyone else.
+        {<p className={style.errors}>{error?.name}</p>}
+        </Form.Text>
+      </Form.Group>
+
+      {/* Dueño */}
+      {/* <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Dueño </Form.Label>
+        <Form.Control  onChange={handlerChange} type="text"
+           placeholder="ingresa el dueño" name='dueño'/>
+        <Form.Text className="text-muted">
+          We'll never share your email with anyone else.
+        {<p className={style.errors}>{error?.dueño}</p>}
+        </Form.Text>
+      </Form.Group> */}
+
+      {/* Imagen */}
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Imagen </Form.Label>
+        <Form.Control  onChange={handlerChange} type="text" 
+          placeholder="ingrese url de la imagen" name='image'/>
+        <Form.Text className="text-muted">
+          We'll never share your email with anyone else.
+        {<p className={style.errors}>{error?.image}</p>}
+        </Form.Text>
+      </Form.Group>
+      
+      {/* Altura Min y Max */}
+    <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Atura Min </Form.Label>
+        <Form.Control  onChange={handlerChange}  type="number" 
+          placeholder="ingrese altura min " name='heightMin'/>
+        <Form.Text className="text-muted">
+          We'll never share your email with anyone else.
+        {<p className={style.errors}>{error?.heightMin}</p>}
+        </Form.Text>
+
+        <Form.Label>Atura Max </Form.Label>
+        <Form.Control onChange={handlerChange}  type="number" 
+          placeholder="ingrese altura max" name='heightMax' 
+          disabled={disableHeight}/>
+        <Form.Text className="text-muted">
+          We'll never share your email with anyone else.
+        {<p className={style.errors}>{error?.heightMax}</p>}
+        </Form.Text>
+
+      </Form.Group>
+      
+      {/* Peso Min y Max */}
+    <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Peso Min </Form.Label>
+        <Form.Control   onChange={handlerChange} type="number" 
+          placeholder="ingrese ingrese peso min " name='weightMin'/>
+        <Form.Text className="text-muted">
+          We'll never share your email with anyone else.
+        {<p className={style.errors}>{error?.weightMin}</p>}
+        </Form.Text>
+
+        <Form.Label>Peso</Form.Label>
+        <Form.Control onChange={handlerChange} type="number" 
+          placeholder="ingrese ingrese peso max " name='weightMax'
+          disabled={disableWeight}/>
+        <Form.Text className="text-muted">
+          We'll never share your email with anyone else.
+        {<p className={style.errors}>{error?.weightMax}</p>}
+        </Form.Text>
+      </Form.Group>
+
+      {/* Esperanza de vida: */}
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Rago de esperanza de cida desde: </Form.Label>
+        <Form.Control onChange={handlerChange} type="number" 
+           name='life_span_min'/>
+        <Form.Text className="text-muted">
+          We'll never share your email with anyone else.
+          { <p className={style.errors}>{error?.life_span_min}</p>}
+        </Form.Text>
+
+        <Form.Label>& </Form.Label>
+        <Form.Control onChange={handlerChange} type="number" 
+           name='life_span_max'/>
+        <Form.Text className="text-muted">
+          We'll never share your email with anyone else.
+          { <p className={style.errors}>{error?.life_span_max}</p>}
+        </Form.Text>
+      </Form.Group>
+
+      {/* Temperamentos */}
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Temperamentos </Form.Label>
+        <Form.Select  onChange={handlerChange} name="temperament">
+        {
+            temperaments?.map((ele,index) => <option key={index} id={ele} value={ele}>
+                    {ele}
+                </option>)
+            }
+        </Form.Select>
+        {<p className={style.errors}>{error?.temperament}</p>}
+
+        <div>
+        {
+            dog.temperament.map((e) => <div key={e} >
+                                        <span id={e}>{e} </span>
+                                        </div>)
+          }
+          { 
+            dog.temperament.length===0 ? <p></p> :
+            <Button onClick={removeTemperament} name='temperament' type='button' > clean </Button> 
+          }
+        </div>
+
+        <hr />
+        <Button className={` ${disableFunction() ? style.disabled : ''}`} disabled={disableFunction()} >Crear perro</Button>
+
+        <br /><br /><br />
+          <div className={style.btn_cnt}>
+            <Link to={"/home"}>
+              <Button>Volver</Button>
+            </Link>
+          </div>
+      </Form.Group>
+    </Form>
+
+  )
+}
+
+export default FormCreate
+
+
+
+{/* <div className={style.container}>
       <form onSubmit={handlerSubmit}>
   
         <h2>Crea tu perro</h2>
@@ -208,7 +348,4 @@ const Form = () => {
         </Link>
       </div>
     </div>
-  )
-}
-
-export default Form
+ */}

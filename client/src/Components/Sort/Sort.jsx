@@ -38,8 +38,7 @@ const Sort = () => {
 
     
   return (
-    <div className='container'>
-    <Form>          
+    <Form >          
         <Form.Group controlId="formOrigen">
             <Form.Select as="select" defaultValue="Origen"  onChange={handlerFiltered}>
                 <option value="Origen" disabled>Origen</option>
@@ -74,7 +73,6 @@ const Sort = () => {
             </Form.Select>
         </Form.Group>
     </Form>
-    </div>
   )
 }
 
