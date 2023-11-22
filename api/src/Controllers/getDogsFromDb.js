@@ -22,6 +22,7 @@ const getDogsDb = async () => {
             height: dog.height,
             life_span: dog.life_span,
             image: dog.image,
+            dueño: dog.dueño,
             temperament: aux.join(",")
         }
     });

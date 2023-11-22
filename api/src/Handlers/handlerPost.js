@@ -8,6 +8,7 @@ const handlerPost = async (req,res) => {
             height,
             weight,
             life_span,
+            dueño,
             temperament
         } = req.body;
         const response = await postDog( image,
@@ -15,6 +16,7 @@ const handlerPost = async (req,res) => {
             height,
             weight,
             life_span,
+            dueño,
             temperament);
         res.status(200).json(response)
         } catch (error) {

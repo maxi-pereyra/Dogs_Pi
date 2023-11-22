@@ -34,3 +34,27 @@ server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
 });
 
 module.exports = server;
+
+
+/*
+las cors : Una API es un procedimiento establecido para que dos programas se comuniquen. Esto significa que otros clientes y servidores consumen los recursos API.
+El cliente y el servidor tienen un origen diferente entre sí, es decir, acceden a recursos desde un servidor diferente. En este caso, fallará el intento de realizar una solicitud a un recurso en el otro servidor.
+Este es un problema de seguridad para el navegador. CORS entra en juego para desactivar este mecanismo y permitir el acceso a estos recursos. CORS agregará un encabezado de respuesta access-control-allow-originsy especificará qué orígenes están permitidos. CORS garantiza que enviemos los encabezados correctos
+
+=> npm i cors express nodemon
+
+const cors = require('cors');
+app.use(cors({
+    origin: 'https://www.section.io'
+}));
+
+const cors = require('cors');
+app.use(cors({
+    origin: ['https://www.section.io', 'https://www.google.com/']
+}));
+
+El bloque de código a continuación garantizará que cualquier página pueda acceder a los recursos de...
+app.use(cors({
+    origin: '*'
+}));
+*/

@@ -26,6 +26,7 @@ const getDogsById = async (id) => {
             height: dogsDb.height,
             life_span: dogsDb.life_span,
             temperament: temperamentAux.join(","),
+            dueño: dogsDb.dueño,
             image: dogsDb.image
         }]
     }
