@@ -12,12 +12,12 @@ import { GET_ALL_DOGS ,
         DELETE_DOG,
         } from "./Actions-types"
 
-const URL = 'http://localhost:3001';
+
 
 export const getAllDogs = () => {
     return async (dispatch) => {
         try {
-            let { data } = await axios.get(`${URL}/dogs`)
+            let { data } = await axios.get(`/dogs`)
 
             if(!data || data.length === 0) throw new Error("No se encontraron perros");
 
@@ -41,7 +41,7 @@ export const getDogById =  (id) => {
     return async ( dispatch ) =>{
         try {
            console.log("id detalle" , id)
-            const { data } = await axios.get(`http://localhost:3001/dogs/${id}`)
+            const { data } = await axios.get(`/dogs/${id}`)
            console.log("data" , data)
 
                 const dog = {
@@ -70,7 +70,7 @@ export const getDogById =  (id) => {
 export const getDogByName = (name) => {
     return async (dispatch) => {
         try {
-            const {data}  = await axios.get(`${URL}/name?name=${name}`);
+            const {data}  = await axios.get(`/name?name=${name}`);
        
             
             const dog = data.map(dogi => {
@@ -105,7 +105,7 @@ export const filterBdApi = (filterApiBd) => {
 export const getAllTemperament = () => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.get(`${URL}/temperaments`);
+            const { data } = await axios.get(`/temperaments`);
 
             if(!data || data.length === 0) throw new Error("no se encontraron perros")
             
@@ -145,7 +145,7 @@ export const sortByPeso = (orderPeso) => {
 export const postDogs = (dogCreado) => {
     return async (dispatch) => {
         try {
-            const response = await axios.post(`${URL}/dogs`,dogCreado);
+            const response = await axios.post(`/dogs`,dogCreado);
             const dogCreate = response.data;
            
             dispatch({
@@ -169,7 +169,7 @@ export const cleanDetail = () => {
 export const deleteDog = (id) => {
     return async (disaptch) => {
         console.log(id)
-        const {response} = await axios.delete(`http://localhost:3001/delete/${id}`);
+        const {response} = await axios.delete(`/delete/${id}`);
         
         return disaptch({
             type: DELETE_DOG,

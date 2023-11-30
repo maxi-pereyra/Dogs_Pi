@@ -4,6 +4,9 @@ import LandingPage from './Components/LandingPage/LandingPage';
 import Home from './Components/Home/Home';
 import Details from './Components/Details/Details';
 import Form from './Components/Form/Form';
+import axios from 'axios';
+axios.defaults.baseURL='http://localhost:3001/'
+
 function App() {
   return (
     <div className="App">
