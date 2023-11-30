@@ -6,10 +6,15 @@ const {
   DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_PORT
 } = process.env;
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`, {
+//postgresql://postgres:dCaAEB-GEb*AD4ecd63c2-a5D2c122Dc@roundhouse.proxy.rlwy.net:50727/railway
+
+const sequelize = new Sequelize(`postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+  dialectModule: pg,
 });
+
+
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
